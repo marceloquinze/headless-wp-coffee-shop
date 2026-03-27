@@ -1,0 +1,22 @@
+---
+import FooterBox from "./FooterBox.astro";
+---
+
+<footer class="bg-coffee-900 pt-20">
+	<div class="max-w-7xl mx-auto mt-10 grid grid-cols-1 lg:grid-cols-3 gap-5">
+		<FooterBox heading="Location">
+			<p>Coffee Street, 1939</p>
+			<p>London, UK</p>
+		</FooterBox>
+		<FooterBox heading="Reserves">
+			<p>Tel. 3355-8888</p>
+			<a href="tel:+3355-8888">Call Us</a>
+		</FooterBox>
+		<FooterBox heading="Opening Hours">
+			<p>Mon-Wed: 11:00 - 22:00</p>
+			<p>Thu-Sat: 09:00 - 24:00</p>
+			<p>Sunday: closed</p>
+		</FooterBox>
+	</div>
+	<p class="py-10 text-center text-white text-sm">All rights reserved. Coffee Shop 1939. &copy; { new Date().getFullYear() }</p>
+</footer>
