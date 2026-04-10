@@ -42,11 +42,24 @@ export const ProcessPageSchema = BaseWPSchema.extend({
 	}).catchall(ProcessSchema)
 })
 
+// Categories
+export const CategorySchema = z.object({
+	name: z.string(),
+	slug: z.string()
+});
+const CategoriesSchema = z.array(CategorySchema);
+
 
 // Blogs Schema
 
 export const PostSchema = BaseWPSchema.omit({
 	acf: true
+}).extend({
+	date: z.string(),
+	category_details: CategoriesSchema
 })
 // transform object to array (API response is an object by default)
 export const PostsSchema = z.array(PostSchema);
+
+// to be used on PostCard component
+export type Post = z.infer<typeof PostSchema>
