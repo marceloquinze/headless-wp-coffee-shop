@@ -1,7 +1,9 @@
 ---
 import { Picture } from 'astro:assets';
-import { formatDate } from '@/helpers/index'
+import PostMeta from "@/components/blog/PostMeta.astro";
+
 import type { Post } from '@/types/index'
+import PostCategories from './PostCategories.astro';
 
 interface Props{
 	post: Post
@@ -12,14 +14,12 @@ const { post } = Astro.props;
 <article class="grid grid-cols-1 lg:grid-cols-3 gap-5 py-10 border-b last-of-type:border-0 border-zinc-300">
 	<div class="lg:col-span-2 space-y-5">
 		<h3 class="text-coffee-900 font-black text-4xl uppercase">
-			<a href="#">
+			<a href={`/blog/${post.slug}`}>
 				{post.title.rendered}
 			</a>
 		</h3>
-		<p>Published on <span class="text-coffee-600">{formatDate(post.date)}</span></p>
-		{ post.category_details.map( cat => (
-			<a href="" class="inline-block py-1 px-5 bg-coffee-600 text-sm text-white mr-2 rounded">{cat.name}</a>
-		) )}
+		<PostMeta date={post.date} />
+		{ post.category_details.map( cat => <PostCategories name={cat.name} /> )}
 		<div set:html={post.content.rendered} class="line-clamp-2 text-lg"></div>
 	</div>
 	<Picture 
