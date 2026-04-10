@@ -41,3 +41,12 @@ export const ProcessPageSchema = BaseWPSchema.extend({
 		subtitle: z.string()
 	}).catchall(ProcessSchema)
 })
+
+
+// Blogs Schema
+
+export const PostSchema = BaseWPSchema.omit({
+	acf: true
+})
+// transform object to array (API response is an object by default)
+export const PostsSchema = z.array(PostSchema);
